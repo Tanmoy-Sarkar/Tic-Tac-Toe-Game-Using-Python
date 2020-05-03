@@ -58,11 +58,9 @@ def evaluate(present_turn):
 	return False
 #main game function
 def game():
-	
 	global num_states
 	num_states=[1,2,3,4,5,6,7,8,9]
 	turn=0
-	
 	game_status = False
 	while game_status == False:
 		game_canvas()
