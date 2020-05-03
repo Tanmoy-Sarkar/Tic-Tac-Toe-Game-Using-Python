@@ -6,7 +6,6 @@ def game_canvas():
 
 #function for taking input from player 1
 def user_input_1():
-	global turn
 	turn_of_1=False
 	while turn_of_1 == False:
 		turn1=int(input("Which Position You Want To Put"))
@@ -14,14 +13,11 @@ def user_input_1():
 		if turn1 in range(10) and num_states[turn1-1] != "o" and num_states[turn1-1] != "*":
 			num_states[turn1-1]="o"
 			turn_of_1=True
-			#keeping track of turn numbers
-			turn += 1
 		else:
 			print("Enter Within the Given Positions Available")
 
 #function for taking input from player 1
 def user_input_2():
-	global turn
 	turn_of_2=False
 	while turn_of_2 == False:
 		turn2=int(input("Which Position You Want To Put"))
@@ -29,14 +25,12 @@ def user_input_2():
 		if turn2 in range(10) and num_states[turn2-1] != "*" and num_states[turn2-1] != "o" :
 			num_states[turn2-1]="*"
 			turn_of_2=True	
-			#keeping track of turn numbers
-			turn += 1
 		else:
 			print("Enter Within the Given Positions Available")
 
 #function for evaluating the outcome of the game
-def evaluate():
-	global present_turn
+def evaluate(present_turn):
+	
 	#for checking if horizontal lines are matched
 	for i in range(0,9,3):
 		if num_states[i]==num_states[i+1]==num_states[i+2]:
@@ -64,18 +58,19 @@ def evaluate():
 	return False
 #main game function
 def game():
+	
 	global num_states
 	num_states=[1,2,3,4,5,6,7,8,9]
-	global turn
 	turn=0
-	global present_turn
+	
 	game_status = False
 	while game_status == False:
 		game_canvas()
 		print("player(o) Enter Your Turn")
 		user_input_1()
 		present_turn = "player(o)"
-		condition=evaluate()
+		condition=evaluate(present_turn)
+		turn += 1
 		if condition == True:
 			break
 		#if nine turn is given and no result is found the match is given tied
@@ -86,7 +81,8 @@ def game():
 		game_canvas()
 		user_input_2()
 		present_turn = "player(*)"
-		condition=evaluate()
+		condition=evaluate(present_turn)
+		turn += 1
 		game_status = condition
 	#asking user if they want to continue the game
 	print("Want To Play Again If Yes Press Y Else Press Any Other Key")
