@@ -57,7 +57,7 @@ def evaluate(present_turn):
 			temp = 2
 	return False
 #main game function
-def game():
+def mainGame():
 	global num_states
 	num_states=[1,2,3,4,5,6,7,8,9]
 	turn=0
@@ -79,19 +79,18 @@ def game():
 		game_canvas()
 		user_input_2()
 		present_turn = "player(*)"
-		condition=evaluate(present_turn)
+		game_status=evaluate(present_turn)
 		turn += 1
-		game_status = condition
 	#asking user if they want to continue the game
 	print("Want To Play Again If Yes Press Y Else Press Any Other Key")
 	n=input()
 	if n == "y" or n=="Y":
 		turn=0
-		game()
+		mainGame()
 	else:
 		exit()
 		
 if __name__ == '__main__':
-	game()
+	mainGame()
 	
 	 
