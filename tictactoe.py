@@ -66,11 +66,12 @@ def mainGame():
 		game_canvas()
 		print("player(o) Enter Your Turn")
 		user_input_1()
-		present_turn = "player(o)"
-		condition=evaluate(present_turn)
+		present_turn = "player(o)"	
 		turn += 1
-		if condition == True:
-			break
+		if turn >= 5:
+			condition=evaluate(present_turn)
+			if condition == True:
+				break
 		#if nine turn is given and no result is found the match is given tied
 		if turn == 9:
 			print("Game is tied")
@@ -79,7 +80,8 @@ def mainGame():
 		game_canvas()
 		user_input_2()
 		present_turn = "player(*)"
-		game_status=evaluate(present_turn)
+		if turn >= 5:
+			game_status=evaluate(present_turn)
 		turn += 1
 	#asking user if they want to continue the game
 	print("Want To Play Again If Yes Press Y Else Press Any Other Key")
